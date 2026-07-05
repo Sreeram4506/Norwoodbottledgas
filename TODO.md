@@ -1,0 +1,10 @@
+- [x] Step 1: Update Hero copy + CTAs in `src/sections/Hero.tsx` to match provided Norwood, MA text (phone, headline/subtitle).
+- [x] Step 2: Update Navigation copy/links/phone in `src/components/Navigation.tsx`.
+- [x] Step 3: Update Services section copy/cards in `src/sections/Services.tsx`.
+- [x] Step 4: Update Bottle Guide section copy in `src/sections/BottleGuide.tsx`.
+- [x] Step 5: Update Coverage Area section copy + area list in `src/sections/CoverageArea.tsx`.
+- [x] Step 6: Simplify/remove TrustBar/Testimonials/HowItWorks in `src/sections/TrustBar.tsx`, `src/sections/Testimonials.tsx`, `src/sections/HowItWorks.tsx` (avoid wrong UK copy).
+- [x] Step 7: Update Contact CTA copy in `src/sections/ContactCTA.tsx` to match provided Norwood/MA hours + call/email/address.
+- [x] Step 8: Update Footer copy in `src/sections/Footer.tsx` (hours, address/phone/email).
+- [x] Step 9: Update mobile Floating CTA in `src/components/FloatingCTA.tsx` to match phone.
+- [ ] Step 10: Run dev server + critical-path UI verification (Hero video visible, CTA scroll works, phone links correct).
