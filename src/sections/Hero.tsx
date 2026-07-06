@@ -1,6 +1,8 @@
 import { useRef } from 'react';
+import { useContactDetails } from '@/config/siteContent';
 
 export default function Hero() {
+  const contact = useContactDetails();
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -55,11 +57,11 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
         >
           <a
-            href="tel:17817622331"
-            className="w-full sm:w-auto bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 text-center"
+            href={contact.phoneHref}
+            className="w-full sm:w-auto bg-brand-blue text-white rounded-pill px-8 py-3.5 text-base font-medium hover:bg-brand-blue-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 text-center"
             style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
           >
-            CALL US: (781) 762-2331
+            CALL US: {contact.phoneDisplay}
           </a>
 
           <a
@@ -78,7 +80,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center opacity-100"
       >
         <div className="relative w-[1px] h-10 bg-warm-muted/40 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-burnt-orange" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-brand-blue" />
         </div>
       </div>
     </section>
