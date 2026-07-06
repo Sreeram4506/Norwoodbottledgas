@@ -14,7 +14,8 @@ import AdminContact from '@/pages/AdminContact';
 
 function getPathname() {
   try {
-    return window.location.pathname || '/';
+    const pathname = window.location.pathname || '/';
+    return pathname !== '/' ? pathname.replace(/\/+$/, '') || '/' : pathname;
   } catch {
     return '/';
   }
