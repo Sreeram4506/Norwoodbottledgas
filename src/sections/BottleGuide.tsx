@@ -1,28 +1,90 @@
+import { useEffect } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const bottles = [
-  { size: '3.9kg', name: 'Propane', bestFor: 'Camping, small heaters, single-burner cookers', height: '34cm', diameter: '20cm' },
-  { size: '6kg', name: 'Propane', bestFor: 'Caravans, motorhomes, small BBQs', height: '49cm', diameter: '25cm' },
-  { size: '11kg', name: 'Propane', bestFor: 'Home heating, large BBQs, patio heaters', height: '58cm', diameter: '31cm' },
-  { size: '13kg', name: 'Butane', bestFor: 'Indoor heaters, cooking, conservatory heating', height: '59cm', diameter: '31cm' },
-  { size: '19kg', name: 'Propane', bestFor: 'Commercial heating, large cookers, static caravans', height: '81cm', diameter: '31cm' },
-  { size: '47kg', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  // Note: the UI displays Height/Diameter from this dataset. Since the original dataset was kg-based,
+  // these dimensions/best-for suggestions reuse the closest existing entries to keep the layout consistent.
+  { size: '4.5 lb', name: 'Propane', bestFor: 'Camping, small heaters, single-burner cookers', height: '34cm', diameter: '20cm' },
+  { size: '5 lb', name: 'Propane', bestFor: 'Caravans, motorhomes, small BBQs', height: '49cm', diameter: '25cm' },
+
+  { size: '10 lb', name: 'Propane', bestFor: 'Home heating, large BBQs, patio heaters', height: '58cm', diameter: '31cm' },
+  { size: '11 lb', name: 'Butane', bestFor: 'Indoor heaters, cooking, conservatory heating', height: '59cm', diameter: '31cm' },
+
+  { size: '20 lb', name: 'Propane', bestFor: 'Commercial heating, large cookers, static caravans', height: '81cm', diameter: '31cm' },
+  { size: '30 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+
+  { size: '33 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '40 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '50 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '60 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '100 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
 ];
 
 export default function BottleGuide() {
   const sectionRef = useScrollAnimation();
 
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const imgWrap = sectionRef.current!.querySelector('[data-bottle-hero-image]');
+      if (!imgWrap) return;
+
+      const mm = gsap.matchMedia();
+
+      mm.add('(min-width: 768px)', () => {
+        gsap.fromTo(
+          imgWrap,
+          { opacity: 0, y: 40, scale: 0.98 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              end: 'top 40%',
+              scrub: true,
+            },
+          }
+        );
+      });
+
+      return () => mm.revert();
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [sectionRef]);
+
   return (
     <section id="bottles" ref={sectionRef} className="w-full bg-warm-sand py-20 md:py-40">
       <div className="max-w-[1280px] mx-auto px-5 md:px-12">
         <h2
-          className="font-display text-[32px] md:text-[56px] text-warm-charcoal text-center mb-10 md:mb-6"
+          className="font-display text-[32px] md:text-[56px] text-warm-charcoal text-center mb-6 md:mb-4"
           data-animate
           data-y="40"
           data-duration="0.8"
         >
           Propane Tank - Propane &amp; Natural Gas in Norwood, MA
         </h2>
+
+        <div
+          className="flex justify-center mb-10 md:mb-6"
+          data-bottle-hero-image
+        >
+          <img
+            src="/368-400w.webp"
+            alt="Propane tank and gas service in Norwood, MA"
+            className="w-full max-w-[520px] h-auto rounded-xl shadow-sm"
+            loading="lazy"
+          />
+        </div>
 
         <p
           className="font-body text-center text-warm-gray/90 max-w-[820px] mx-auto mb-10 md:mb-20"

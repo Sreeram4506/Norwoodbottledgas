@@ -36,14 +36,7 @@ export default function Navigation() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-400 ${
           visible ? 'translate-y-0' : '-translate-y-full'
-        }`}
-        style={{
-          backgroundColor: 'rgba(250, 246, 241, 0.9)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          borderBottom: '1px solid #E8E2DA',
-          height: '64px',
-        }}
+        } bg-warm-cream/90 backdrop-blur border-b border-border-light`}
       >
         <div className="max-w-[1280px] mx-auto px-5 md:px-12 h-full flex items-center justify-between">
           {/* Logo */}
