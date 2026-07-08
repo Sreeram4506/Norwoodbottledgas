@@ -58,7 +58,7 @@ export default function Hero() {
         >
           <a
             href={contact.phoneHref}
-            className="w-full sm:w-auto bg-brand-blue text-white rounded-pill px-8 py-3.5 text-base font-medium hover:bg-brand-blue-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 text-center"
+            className="w-full sm:w-auto bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 text-center"
             style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
           >
             CALL US: {contact.phoneDisplay}
