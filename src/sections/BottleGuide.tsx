@@ -6,22 +6,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const bottles = [
-  // Note: the UI displays Height/Diameter from this dataset. Since the original dataset was kg-based,
-  // these dimensions/best-for suggestions reuse the closest existing entries to keep the layout consistent.
-  { size: '4.5 lb', name: 'Propane', bestFor: 'Camping, small heaters, single-burner cookers', height: '34cm', diameter: '20cm' },
-  { size: '5 lb', name: 'Propane', bestFor: 'Caravans, motorhomes, small BBQs', height: '49cm', diameter: '25cm' },
+  { size: '4.5 lb', name: 'Propane', bestFor: 'Portable camp stoves, lanterns, small torches', height: '13.5"', diameter: '7.25"' },
+  { size: '5 lb', name: 'Propane', bestFor: 'Small BBQ grills, patio heaters, RV appliances', height: '16"', diameter: '10"' },
 
-  { size: '10 lb', name: 'Propane', bestFor: 'Home heating, large BBQs, patio heaters', height: '58cm', diameter: '31cm' },
-  { size: '11 lb', name: 'Butane', bestFor: 'Indoor heaters, cooking, conservatory heating', height: '59cm', diameter: '31cm' },
+  { size: '10 lb', name: 'Propane', bestFor: 'Mid-size grills, patio heaters, portable generators', height: '18"', diameter: '10"' },
+  { size: '11 lb', name: 'Propane', bestFor: 'Indoor-rated heaters, small generators, forklifts', height: '18"', diameter: '10.5"' },
 
-  { size: '20 lb', name: 'Propane', bestFor: 'Commercial heating, large cookers, static caravans', height: '81cm', diameter: '31cm' },
-  { size: '30 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '20 lb', name: 'Propane', bestFor: 'Standard BBQ grills — our most exchanged size', height: '18"', diameter: '12.5"' },
+  { size: '30 lb', name: 'Propane', bestFor: 'RVs, campers, whole-house backup generators', height: '24"', diameter: '12.5"' },
 
-  { size: '33 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
-  { size: '40 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
-  { size: '50 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
-  { size: '60 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
-  { size: '100 lb', name: 'Propane', bestFor: 'Large homes, commercial kitchens, industrial use', height: '129cm', diameter: '38cm' },
+  { size: '33 lb', name: 'Propane', bestFor: 'Forklifts, commercial mowers, motor-fuel use', height: '24"', diameter: '12.5"' },
+  { size: '40 lb', name: 'Propane', bestFor: 'Pool and spa heaters, large patio setups', height: '27"', diameter: '14.5"' },
+  { size: '50 lb', name: 'Propane', bestFor: 'Small households, workshops, food trucks', height: '30"', diameter: '14.5"' },
+  { size: '60 lb', name: 'Propane', bestFor: 'Larger households, multi-appliance homes', height: '33"', diameter: '14.5"' },
+  { size: '100 lb', name: 'Propane', bestFor: 'Whole-home heating, standby generators, commercial kitchens', height: '48"', diameter: '14.5"' },
 ];
 
 export default function BottleGuide() {
@@ -71,7 +69,7 @@ export default function BottleGuide() {
           data-y="40"
           data-duration="0.8"
         >
-          Propane Tank - Propane &amp; Natural Gas in Norwood, MA
+          Propane Tank - Propane in Norwood, MA
         </h2>
 
         <div
@@ -92,8 +90,7 @@ export default function BottleGuide() {
           data-y="30"
           data-duration="0.7"
         >
-          Choosing the right bottle is easy—tell us what you’re powering, and we’ll recommend the correct size. We refill propane and natural gas
-          tanks across Norwood in every capacity.
+          Choosing the right bottle is easy—tell us what you’re powering, and we’ll recommend the correct size. We refill propane tanks across Norwood in every capacity.
         </p>
 
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
@@ -140,7 +137,7 @@ export default function BottleGuide() {
                   </p>
 
                   <p className="font-body text-sm md:text-base text-warm-gray mt-2">
-                    We refill propane &amp; natural gas tanks in Norwood, MA — in every size.
+                    We refill propane tanks in Norwood, MA — in every size.
                   </p>
 
                   <p className="font-mono text-xs text-warm-muted mt-2">

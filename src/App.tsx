@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import FloatingCTA from '@/components/FloatingCTA';
 import Hero from '@/sections/Hero';
+import DiscountScroller from '@/sections/DiscountScroller';
 import TrustBar from '@/sections/TrustBar';
 import Services from '@/sections/Services';
 import BottleGuide from '@/sections/BottleGuide';
@@ -39,6 +40,7 @@ export default function App() {
       <Navigation />
       <main>
         <Hero />
+        <DiscountScroller />
         <TrustBar />
         <Services />
         <BottleGuide />

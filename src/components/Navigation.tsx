@@ -74,7 +74,7 @@ export default function Navigation() {
           {/* Desktop CTA */}
           <a
             href={contact.phoneHref}
-            className="hidden md:flex items-center gap-2 bg-brand-blue text-white rounded-pill px-6 py-2.5 text-sm font-medium hover:bg-brand-blue-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300"
+            className="hidden md:flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-6 py-2.5 text-sm font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300"
             style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
           >
             <Phone size={14} />
@@ -118,14 +118,14 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="font-display text-3xl text-warm-charcoal hover:text-brand-blue transition-colors duration-200"
+                className="font-display text-3xl text-warm-charcoal hover:text-burnt-orange transition-colors duration-200"
               >
                 {link.label}
               </a>
             ))}
             <a
               href={contact.phoneHref}
-              className="mt-4 flex items-center gap-2 bg-brand-blue text-white rounded-pill px-8 py-3.5 text-base font-medium"
+              className="mt-4 flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium"
             >
               <Phone size={16} />
               Call {contact.phoneDisplay}

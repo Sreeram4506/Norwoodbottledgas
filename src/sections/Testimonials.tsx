@@ -9,7 +9,7 @@ const testimonials = [
     image: '/images/image-testimonial-1.jpg',
   },
   {
-    quote: "We can’t afford to run out of gas. Norwood Bottled Gas keeps us stocked and makes delivery and exchange simple. Reliable and professional.",
+    quote: "We can’t afford to run out of propane. Norwood Bottled Gas keeps us stocked and makes delivery and exchange simple. Reliable and professional.",
     name: 'David T.',
     location: 'Norwood, MA',
     image: '/images/image-testimonial-2.jpg',

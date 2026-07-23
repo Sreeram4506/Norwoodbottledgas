@@ -5,13 +5,22 @@ import {
   getDefaultContactDetails,
   type SiteContactDetails,
 } from '@/config/siteContent';
+import {
+  getDiscountDetails,
+  setDiscountDetails,
+  getDefaultDiscountDetails,
+  type DiscountDetails,
+} from '@/config/discountContent';
 
 export default function AdminContact() {
   const [details, setDetails] = useState<SiteContactDetails>(getDefaultContactDetails());
   const [saved, setSaved] = useState(false);
 
+  const [discount, setDiscount] = useState<DiscountDetails>(getDefaultDiscountDetails());
+
   useEffect(() => {
     setDetails(getContactDetails());
+    setDiscount(getDiscountDetails());
   }, []);
 
   const isPhoneHrefValid = useMemo(() => {
@@ -24,14 +33,26 @@ export default function AdminContact() {
     if (!isPhoneHrefValid) return;
 
     setContactDetails(details);
+    setDiscountDetails({
+      ...discount,
+      title: discount.title.trim(),
+      messages: discount.messages.map((m) => (m ?? '').trim()).filter(Boolean),
+    });
+
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2500);
   };
 
   const handleReset = () => {
     const d = getDefaultContactDetails();
+    const dis = getDefaultDiscountDetails();
+
     setDetails(d);
     setContactDetails(d);
+
+    setDiscount(dis);
+    setDiscountDetails(dis);
+
     setSaved(true);
     window.setTimeout(() => setSaved(false), 2500);
   };
@@ -47,60 +68,121 @@ export default function AdminContact() {
         </div>
 
         <form onSubmit={handleSave} className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="md:col-span-2">
-              <label className="block text-sm text-white/70 mb-2">Phone (tel link)</label>
-              <input
-                value={details.phoneHref}
-                onChange={(e) => setDetails({ ...details, phoneHref: e.target.value })}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
-                placeholder="tel:17817622331"
-              />
-              {!isPhoneHrefValid ? (
-                <p className="mt-2 text-sm text-red-300">
-                  phoneHref must start with <span className="font-mono">tel:</span>
+          <div className="space-y-10">
+            <div>
+              <div className="mb-6">
+                <h2 className="font-display text-[22px] text-white">Contact Details</h2>
+                <p className="font-body text-white/70 mt-1 text-sm">
+                  Updates the phone, address, email and winter hours shown on the website.
                 </p>
-              ) : null}
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Phone (tel link)</label>
+                  <input
+                    value={details.phoneHref}
+                    onChange={(e) => setDetails({ ...details, phoneHref: e.target.value })}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                    placeholder="tel:17817622331"
+                  />
+                  {!isPhoneHrefValid ? (
+                    <p className="mt-2 text-sm text-red-300">
+                      phoneHref must start with <span className="font-mono">tel:</span>
+                    </p>
+                  ) : null}
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Phone (display)</label>
+                  <input
+                    value={details.phoneDisplay}
+                    onChange={(e) => setDetails({ ...details, phoneDisplay: e.target.value })}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                    placeholder="(781) 762-2331"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Address</label>
+                  <input
+                    value={details.addressLine}
+                    onChange={(e) => setDetails({ ...details, addressLine: e.target.value })}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                    placeholder="305 Providence Highway, Route 1, Norwood, MA 02062"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Email</label>
+                  <input
+                    value={details.email}
+                    onChange={(e) => setDetails({ ...details, email: e.target.value })}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                    placeholder="bengnbg@gmail.com"
+                  />
+                </div>
+
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Winter Hours</label>
+                  <textarea
+                    value={details.winterHours}
+                    onChange={(e) => setDetails({ ...details, winterHours: e.target.value })}
+                    rows={4}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200 resize-y min-h-[120px]"
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm text-white/70 mb-2">Phone (display)</label>
-              <input
-                value={details.phoneDisplay}
-                onChange={(e) => setDetails({ ...details, phoneDisplay: e.target.value })}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
-                placeholder="(781) 762-2331"
-              />
-            </div>
+            <div className="border-t border-white/10 pt-8">
+              <div className="mb-6">
+                <h2 className="font-display text-[22px] text-white">Discount Offers (Hero Scroller)</h2>
+                <p className="font-body text-white/70 mt-1 text-sm">
+                  Updates the discount/messages shown in the scroller directly below the hero.
+                </p>
+              </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm text-white/70 mb-2">Address</label>
-              <input
-                value={details.addressLine}
-                onChange={(e) => setDetails({ ...details, addressLine: e.target.value })}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
-                placeholder="305 Providence Highway, Route 1, Norwood, MA 02062"
-              />
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-white/70 mb-2">Scroller Title</label>
+                  <input
+                    value={discount.title}
+                    onChange={(e) => setDiscount({ ...discount, title: e.target.value })}
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                    placeholder="Limited-Time Offers"
+                  />
+                </div>
 
-            <div className="md:col-span-2">
-              <label className="block text-sm text-white/70 mb-2">Email</label>
-              <input
-                value={details.email}
-                onChange={(e) => setDetails({ ...details, email: e.target.value })}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
-                placeholder="bengnbg@gmail.com"
-              />
-            </div>
+                {Array.from({ length: 3 }).map((_, i) => {
+                  const value = discount.messages[i] ?? '';
+                  return (
+                    <div key={i} className="md:col-span-2">
+                      <label className="block text-sm text-white/70 mb-2">{`Message ${i + 1}`}</label>
+                      <input
+                        value={value}
+                        onChange={(e) => {
+                          const next = [...discount.messages];
+                          next[i] = e.target.value;
+                          setDiscount({ ...discount, messages: next });
+                        }}
+                        className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200"
+                        placeholder={
+                          i === 0
+                            ? '10% OFF refill bundles...'
+                            : i === 1
+                              ? 'Seasonal promo: ...'
+                              : 'Family & bulk discounts...'
+                        }
+                      />
+                    </div>
+                  );
+                })}
 
-            <div className="md:col-span-2">
-              <label className="block text-sm text-white/70 mb-2">Winter Hours</label>
-              <textarea
-                value={details.winterHours}
-                onChange={(e) => setDetails({ ...details, winterHours: e.target.value })}
-                rows={4}
-                className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder:text-white/40 font-body text-base focus:border-burnt-orange focus:outline-none transition-colors duration-200 resize-y min-h-[120px]"
-              />
+                <div className="md:col-span-2 text-white/60 text-sm">
+                  Tip: leave messages blank to hide them. Save updates the website on reload.
+                </div>
+              </div>
             </div>
           </div>
 
