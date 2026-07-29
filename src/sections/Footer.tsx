@@ -4,14 +4,15 @@ const quickLinks = [
   { label: 'Services', href: '#services' },
   { label: 'Bottle Guide', href: '#bottles' },
   { label: 'Coverage', href: '#areas' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contact', href: '#contact' },
 ];
 
 const serviceLinks = [
-  'Home & Heating',
-  'BBQ & Patio',
-  'Commercial',
-  'Accessories',
+  'Propane Refills',
+  'Delivery & Exchange',
+  'Grill Sales & Repairs',
+  'Tank Disposal',
 ];
 
 export default function Footer() {
@@ -98,6 +99,12 @@ export default function Footer() {
             </p>
             <p className="font-body text-sm text-white/60">
               {contact.winterHours}
+            </p>
+            <p className="font-body text-sm text-white/60 mt-2">
+              Delivery &amp; Exchange Hours
+            </p>
+            <p className="font-body text-sm text-white/60">
+              Mon–Fri 9:00 AM–5:00 PM
             </p>
           </div>
         </div>

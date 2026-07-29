@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router';
+import { Menu, X, Phone, ShoppingCart, User } from 'lucide-react';
 import { useContactDetails } from '@/config/siteContent';
+import { useCart } from '@/context/CartContext';
+import { useAuth } from '@/context/AuthContext';
 
 const navLinks = [
   { label: 'Propane', href: '#bottles' },
   { label: 'Delivery & Exchange Program', href: '#areas' },
-  { label: 'Grill Sales, Parts & Repair', href: '#services' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Location & Contact', href: '#contact' },
 ];
 
@@ -13,6 +16,10 @@ export default function Navigation() {
   const contact = useContactDetails();
   const [visible, setVisible] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { count } = useCart();
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,10 +32,14 @@ export default function Navigation() {
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      window.setTimeout(() => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' }), 100);
+      return;
     }
+
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -40,22 +51,14 @@ export default function Navigation() {
       >
         <div className="max-w-[1280px] mx-auto px-5 md:px-12 h-full flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            aria-label="Norwood Bottled Gas Home"
-            className="flex shrink-0 items-center"
-          >
+          <Link to="/" aria-label="Norwood Bottled Gas Home" className="flex shrink-0 items-center">
             <img
               src="/lohopropane.png"
               alt="Norwood Bottled Gas"
               className="block h-11 w-[160px] object-cover object-center md:h-12 md:w-[180px]"
               loading="lazy"
             />
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
@@ -69,26 +72,51 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
+            <Link
+              to="/grills"
+              className="text-[13px] text-warm-gray hover:text-warm-charcoal transition-colors duration-200"
+            >
+              Grill Sales
+            </Link>
           </div>
 
-          {/* Desktop CTA */}
-          <a
-            href={contact.phoneHref}
-            className="hidden md:flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-6 py-2.5 text-sm font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300"
-            style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
-          >
-            <Phone size={14} />
-            Call Us
-          </a>
+          <div className="flex items-center gap-3 md:gap-4">
+            <Link
+              to={user ? '/account' : '/login'}
+              className="hidden sm:flex p-2 text-warm-charcoal hover:text-burnt-orange transition-colors"
+              aria-label={user ? 'My Account' : 'Log In'}
+            >
+              <User size={20} />
+            </Link>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden p-2 text-warm-charcoal"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu size={24} />
-          </button>
+            <Link to="/cart" className="relative p-2 text-warm-charcoal hover:text-burnt-orange transition-colors" aria-label="Cart">
+              <ShoppingCart size={20} />
+              {count > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 bg-burnt-orange text-white text-[10px] font-mono rounded-full w-4 h-4 flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </Link>
+
+            {/* Desktop CTA */}
+            <a
+              href={contact.phoneHref}
+              className="hidden md:flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-6 py-2.5 text-sm font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300"
+              style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
+            >
+              <Phone size={14} />
+              Call Us
+            </a>
+
+            {/* Mobile Hamburger */}
+            <button
+              className="md:hidden p-2 text-warm-charcoal"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -96,14 +124,14 @@ export default function Navigation() {
       {mobileOpen && (
         <div className="fixed inset-0 z-[100] bg-warm-cream flex flex-col">
           <div className="flex items-center justify-between px-5 h-16 border-b border-border-light">
-            <a href="#" aria-label="Norwood Bottled Gas Home" className="flex shrink-0 items-center">
+            <Link to="/" aria-label="Norwood Bottled Gas Home" className="flex shrink-0 items-center" onClick={() => setMobileOpen(false)}>
               <img
                 src="/lohopropane.png"
                 alt="Norwood Bottled Gas"
                 className="block h-9 w-[132px] object-cover object-center"
                 loading="lazy"
               />
-            </a>
+            </Link>
             <button
               className="p-2 text-warm-charcoal"
               onClick={() => setMobileOpen(false)}
@@ -123,6 +151,13 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
+            <Link
+              to="/grills"
+              onClick={() => setMobileOpen(false)}
+              className="font-display text-3xl text-warm-charcoal hover:text-burnt-orange transition-colors duration-200"
+            >
+              Grill Sales
+            </Link>
             <a
               href={contact.phoneHref}
               className="mt-4 flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium"

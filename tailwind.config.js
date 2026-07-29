@@ -51,6 +51,21 @@ module.exports = {
         "border-medium": "#D0C8BE",
         "warm-gold": "#C4A35A",
         "sage-green": "#5A7D6C",
+        // Grill Sales / shop palette
+        "grill-ink": "#161716",
+        "grill-ink-soft": "#37413F",
+        "grill-muted": "#66716D",
+        "grill-paper": "#F7F8F2",
+        "grill-panel": "#FFFFFF",
+        "grill-panel-warm": "#EEF3EA",
+        "grill-line": "#E2E5DD",
+        "grill-line-strong": "#C9D0C4",
+        "grill-brand": "#B64210",
+        "grill-brand-strong": "#842900",
+        "grill-brand-hot": "#FF5C00",
+        "grill-steel": "#315F67",
+        "grill-sage": "#6D806A",
+        "grill-charcoal": "#181B1B",
       },
       fontFamily: {
         display: ['"Instrument Serif"', 'Georgia', 'serif'],
@@ -69,6 +84,9 @@ module.exports = {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         card: "0 4px 24px rgba(45, 41, 38, 0.08)",
         float: "0 8px 40px rgba(45, 41, 38, 0.12)",
+        "grill-sm": "0 14px 34px rgba(38, 49, 45, 0.10)",
+        "grill-md": "0 28px 64px rgba(24, 27, 27, 0.16)",
+        "grill-lg": "0 38px 90px rgba(24, 27, 27, 0.22)",
       },
       keyframes: {
         "accordion-down": {

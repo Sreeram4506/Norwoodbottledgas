@@ -1,30 +1,62 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { MapPin } from 'lucide-react';
+import { useContactDetails } from '@/config/siteContent';
 
 const areas = [
-  'Westwood',
-  'Canton',
   'Dedham',
-  'West Roxbury',
-  'Hyde Park',
-  'Sharon',
+  'Canton',
+  'Westwood',
   'Walpole',
   'Norfolk',
-  'Millis',
-  'Newton',
-  'Brookline',
-  'Stoughton',
-  'Wrentham',
-  'Needham',
-  'Chestnut Hill',
-  'Dover',
-  'Sherborn',
   'Medfield',
+  'Millis',
+  'Dover',
+  'Sheldonville',
   'Bellingham',
+  'Franklin',
+  'Hyde Park',
+  'Brookline',
+  'Brighton',
+  'Allston',
+  'Chestnut Hill',
+  'Stoughton',
+  'Sharon',
+  'Milton',
+  'Readville',
+  'Needham',
+  'West Roxbury',
+  'Newton',
+  'Foxboro',
+  'Mansfield',
+  'Roslindale',
+  'Jamaica Plain',
+  'Wellesley',
+  'Plainville',
+  'Wrentham',
+  'Sherborn',
+  'Holliston',
+  'Medway',
+  'Natick',
+  'Framingham',
+  'Randolph',
+  'Easton',
+  'North Attleboro',
+  'Attleboro',
+  'Braintree',
+  'Weymouth',
+  'Holbrook',
+  'Wayland',
+  'Weston',
+  'Waltham',
+  'Arlington',
+  'Belmont',
+  'Watertown',
+  'Ashland',
 ];
 
 export default function CoverageArea() {
   const sectionRef = useScrollAnimation();
+  const contact = useContactDetails();
 
   return (
     <section id="areas" ref={sectionRef} className="w-full bg-warm-sand py-20 md:py-40">
@@ -56,7 +88,7 @@ export default function CoverageArea() {
               data-y="40"
               data-duration="0.8"
             >
-              Proudly Serving Norwood & Surrounding Areas
+              Proudly Serving Norwood & 49 Surrounding Towns
             </h2>
 
             <p
@@ -66,12 +98,14 @@ export default function CoverageArea() {
               data-delay="0.15"
               data-duration="0.8"
             >
-              We proudly serve Norwood and all surrounding areas including: Westwood, Canton, Dedham, West Roxbury, Hyde Park, Sharon, Walpole, Norfolk, Millis, Newton, Brookline, Stoughton, Wrentham, Needham, Chestnut Hill, Dover, Sherborn, Medfield, and Bellingham.
+              Based in Norwood, MA, we deliver and exchange propane tanks across greater Massachusetts — from
+              Dedham, Canton, and Westwood to Newton, Framingham, and Waltham. Check the full list below, or call
+              us to confirm we cover your town.
             </p>
 
             {/* Area List */}
             <div
-              className="grid grid-cols-2 gap-3 mt-8"
+              className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-8"
               data-animate
               data-x="20"
               data-stagger="0.05"
@@ -87,7 +121,7 @@ export default function CoverageArea() {
 
             <div data-animate data-y="30" data-delay="0.4" data-duration="0.8">
               <a
-                href="tel:01709510297"
+                href={contact.phoneHref}
                 className="inline-flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium hover:bg-burnt-orange-hover hover:shadow-float hover:-translate-y-0.5 transition-all duration-300 mt-10"
                 style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
               >

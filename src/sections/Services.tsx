@@ -16,11 +16,11 @@ const services = [
     image: '/images/image-service-bbq.jpg',
     title: 'Propane Delivery & Exchange',
     description:
-      'We provide propane delivery & exchange so you always have the gas you need when you need it.',
-    bottles: 'Propane Delivery & Exchange',
+      'Precision-filled tank delivery & exchange, right to your door — no need to be home.',
+    bottles: 'Propane Delivery & Exchange · Tanks 2 You',
     borderColor: '#C4A35A',
     details:
-      'Keep things cooking at home. With our delivery and exchange program, all you need to do is leave your empty tank in an accessible area and we will swap it out with a full tank. No need to be home, we will even disconnect the empty tank from your grill and reconnect a full tank! For more information visit: Emptygrilltank.com',
+      'Keep things cooking at home. With our delivery and exchange program, all you need to do is leave your empty tank in an accessible area and we will swap it out with a full tank — no need to be home, we will even disconnect the empty tank and reconnect a full one for you. Our tanks are precision-filled with 18–20 lbs of propane, roughly 25% more than the industry-standard "short fill." Delivery & exchange runs Monday–Friday, 9 AM–5 PM, across 49 towns in Massachusetts. Spare tank delivery (no exchange needed) is also available. For online ordering, visit Emptygrilltank.com.',
   },
   {
     image: '/images/image-service-commercial.jpg',
@@ -30,7 +30,17 @@ const services = [
     bottles: 'Grill Sales & Parts · Grills Service & Repairs',
     borderColor: '#5A7D6C',
     details:
-      'Keep your barbecue grills in top condition with our help. Our technicians service and repair all major brands at your location. For your grilling needs, Norwood Bottled Gas carries a large variety of barbecue parts and supplies, too. We are a proud supplier of grills, grill accessories, and replacement parts from the Modern Home Products® line.',
+      'Keep your barbecue grills in top condition with our help. With over 10 years of experience, our technicians service roughly 400 grills a year with a thorough 10-point check, right at your location. We carry a large inventory of exact-fit replacement parts and service all major brands — including Weber, MHP, ProFire, Charbroil, Broil King, Vermont Castings, Viking, and many more. We\'re also a proud authorized dealer of grills, accessories, and replacement parts from the Modern Home Products® (MHP) line — see our Grill Sales page.',
+  },
+  {
+    image: '/images/image-bottles-variety.jpg',
+    title: 'Propane Tank Disposal',
+    description:
+      'Have an old or expired tank? Drop it off or schedule a pickup — we recycle propane cylinders responsibly.',
+    bottles: 'Propane Tank Disposal & Recycling',
+    borderColor: '#8A827D',
+    details:
+      'Got an expired or unwanted propane cylinder? Bring it to our Norwood facility for drop-off, or schedule a pickup at your location. We accept propane cylinders only (no helium, acetylene, fire extinguishers, oxygen, or CO2 tanks). Call or email us to arrange a pickup, or ask about drop-off pricing next time you visit — pricing varies by tank size and pickup vs. drop-off.',
   },
 ];
 
@@ -125,7 +135,7 @@ export default function Services() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((s) => {
             const isPopupCard = Boolean(s.details);
 

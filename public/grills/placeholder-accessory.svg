@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <rect width="600" height="450" fill="#ded2c2"/>
+  <path d="M150 260 Q300 180 450 260 L450 380 Q300 340 150 380 Z" fill="#33475b"/>
+  <text x="300" y="60" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#7a3b1e">Placeholder — Grill Cover</text>
+  <text x="300" y="430" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#5c5346">Replace via /admin/inventory</text>
+</svg>

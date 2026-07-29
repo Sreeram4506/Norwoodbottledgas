@@ -11,6 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.local
+
+# Locally-uploaded admin images (dev-only fallback storage; production uses Vercel Blob)
+/public/uploads/
 
 # Editor directories and files
 .vscode/*

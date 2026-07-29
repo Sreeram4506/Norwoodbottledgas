@@ -70,6 +70,13 @@ export default function ContactCTA() {
 
         <p
           data-animate-contact
+          className="font-mono text-xs uppercase tracking-[0.04em] text-white/50 mt-2 opacity-0"
+        >
+          Delivery &amp; Exchange Hours: Mon–Fri 9:00 AM–5:00 PM
+        </p>
+
+        <p
+          data-animate-contact
           className="font-body text-sm text-white/50 mt-4 opacity-0"
         >
           {contact.addressLine} · {contact.email}

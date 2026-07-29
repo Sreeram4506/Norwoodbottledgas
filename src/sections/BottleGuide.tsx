@@ -6,20 +6,20 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const bottles = [
-  { size: '4.5 lb', name: 'Propane', bestFor: 'Portable camp stoves, lanterns, small torches', height: '13.5"', diameter: '7.25"' },
-  { size: '5 lb', name: 'Propane', bestFor: 'Small BBQ grills, patio heaters, RV appliances', height: '16"', diameter: '10"' },
+  { size: '4.5 lb', name: 'Propane', bestFor: 'Portable camp stoves, lanterns, small torches', height: '13.5"', diameter: '7.25"', delivery: false },
+  { size: '5 lb', name: 'Propane', bestFor: 'Small BBQ grills, patio heaters, RV appliances', height: '16"', diameter: '10"', delivery: false },
 
-  { size: '10 lb', name: 'Propane', bestFor: 'Mid-size grills, patio heaters, portable generators', height: '18"', diameter: '10"' },
-  { size: '11 lb', name: 'Propane', bestFor: 'Indoor-rated heaters, small generators, forklifts', height: '18"', diameter: '10.5"' },
+  { size: '10 lb', name: 'Propane', bestFor: 'Mid-size grills, patio heaters, portable generators', height: '18"', diameter: '10"', delivery: false },
+  { size: '11 lb', name: 'Propane', bestFor: 'Indoor-rated heaters, small generators, forklifts', height: '18"', diameter: '10.5"', delivery: false },
 
-  { size: '20 lb', name: 'Propane', bestFor: 'Standard BBQ grills — our most exchanged size', height: '18"', diameter: '12.5"' },
-  { size: '30 lb', name: 'Propane', bestFor: 'RVs, campers, whole-house backup generators', height: '24"', diameter: '12.5"' },
+  { size: '20 lb', name: 'Propane', bestFor: 'Standard BBQ grills — our most exchanged size', height: '18"', diameter: '12.5"', delivery: true },
+  { size: '30 lb', name: 'Propane', bestFor: 'RVs, campers, whole-house backup generators', height: '24"', diameter: '12.5"', delivery: true },
 
-  { size: '33 lb', name: 'Propane', bestFor: 'Forklifts, commercial mowers, motor-fuel use', height: '24"', diameter: '12.5"' },
-  { size: '40 lb', name: 'Propane', bestFor: 'Pool and spa heaters, large patio setups', height: '27"', diameter: '14.5"' },
-  { size: '50 lb', name: 'Propane', bestFor: 'Small households, workshops, food trucks', height: '30"', diameter: '14.5"' },
-  { size: '60 lb', name: 'Propane', bestFor: 'Larger households, multi-appliance homes', height: '33"', diameter: '14.5"' },
-  { size: '100 lb', name: 'Propane', bestFor: 'Whole-home heating, standby generators, commercial kitchens', height: '48"', diameter: '14.5"' },
+  { size: '33 lb', name: 'Propane', bestFor: 'Forklifts, commercial mowers, motor-fuel use', height: '24"', diameter: '12.5"', delivery: false },
+  { size: '40 lb', name: 'Propane', bestFor: 'Pool and spa heaters, large patio setups', height: '27"', diameter: '14.5"', delivery: true },
+  { size: '50 lb', name: 'Propane', bestFor: 'Small households, workshops, food trucks', height: '30"', diameter: '14.5"', delivery: false },
+  { size: '60 lb', name: 'Propane', bestFor: 'Larger households, multi-appliance homes', height: '33"', diameter: '14.5"', delivery: false },
+  { size: '100 lb', name: 'Propane', bestFor: 'Whole-home heating, standby generators, commercial kitchens', height: '48"', diameter: '14.5"', delivery: false },
 ];
 
 export default function BottleGuide() {
@@ -107,6 +107,11 @@ export default function BottleGuide() {
                 <li>• Refill and exchange options based on availability</li>
                 <li>• Clear guidance on sizing for heaters, BBQs, and home systems</li>
                 <li>• Fast local delivery around Norwood, MA</li>
+                <li>
+                  • <span className="text-warm-charcoal font-medium">Precision-filled tanks:</span> our 20, 30, and
+                  40 lb delivery &amp; exchange tanks hold roughly 25% more propane than the industry-standard
+                  "short fill"
+                </li>
               </ul>
               <p className="font-mono text-xs text-warm-muted mt-3">
                 Tip: If you’re unsure, call with your appliance type—our team will help you pick the right bottle.
@@ -132,9 +137,16 @@ export default function BottleGuide() {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="font-body text-sm md:text-base text-warm-gray">
-                    Best for: <span className="text-warm-charcoal font-medium">{b.bestFor}</span>
-                  </p>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <p className="font-body text-sm md:text-base text-warm-gray">
+                      Best for: <span className="text-warm-charcoal font-medium">{b.bestFor}</span>
+                    </p>
+                    {b.delivery && (
+                      <span className="font-mono text-[10px] uppercase tracking-wide bg-sage-green/15 text-sage-green rounded-pill px-2.5 py-1">
+                        Delivery &amp; Exchange Available
+                      </span>
+                    )}
+                  </div>
 
                   <p className="font-body text-sm md:text-base text-warm-gray mt-2">
                     We refill propane tanks in Norwood, MA — in every size.
