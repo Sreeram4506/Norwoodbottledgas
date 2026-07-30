@@ -23,6 +23,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     throw new ApiError((body && body.error) || res.statusText, res.status, body?.details);
   }
 
+  // A 2xx response with no JSON body means something upstream served the
+  // wrong thing (e.g. the SPA's index.html instead of the API route) rather
+  // than a real API response — treat it as a failure instead of silently
+  // returning null and letting callers crash on `res.user` / `res.products`.
+  if (!isJson) {
+    throw new ApiError('Unexpected response from server', res.status);
+  }
+
   return body as T;
 }
 
@@ -41,6 +49,10 @@ async function upload<T>(path: string, file: File): Promise<T> {
 
   if (!res.ok) {
     throw new ApiError((body && body.error) || res.statusText, res.status, body?.details);
+  }
+
+  if (!isJson) {
+    throw new ApiError('Unexpected response from server', res.status);
   }
 
   return body as T;
