@@ -4,15 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=22.9.0"
   },
   "scripts": {
     "dev": "vite",
-    "server": "tsx watch server/dev-server.ts",
+    "server": "tsx watch --env-file-if-exists=.env server/dev-server.ts",
     "dev:all": "concurrently -n vite,api -c blue,green \"npm:dev\" \"npm:server\"",
-    "seed": "tsx server/seed.ts",
+    "seed": "tsx --env-file-if-exists=.env server/seed.ts",
     "build": "tsc -b && vite build",
-    "start": "tsx server/start.ts",
+    "start": "tsx --env-file-if-exists=.env server/start.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },

@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import { pathToFileURL } from 'node:url';
 import { connectDB } from './db';
 import { User } from './models/User';
 import { Product } from './models/Product';
@@ -231,6 +232,7 @@ export async function seedPlaceholderProducts() {
 }
 
 export async function seedDefaultAdmin() {
+  const usedFallbackCredentials = !process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD;
   const email = (process.env.ADMIN_EMAIL || 'admin@norwoodgas.local').toLowerCase();
   const existing = await User.findOne({ email });
   if (existing) return;
@@ -238,10 +240,15 @@ export async function seedDefaultAdmin() {
   const password = process.env.ADMIN_PASSWORD || 'ChangeMe123!';
   const passwordHash = await bcrypt.hash(password, 10);
   await User.create({ name: 'Site Admin', email, passwordHash, role: 'admin' });
-  console.warn(
-    `[seed] Created default admin account ${email} with a placeholder password. ` +
-      'Set ADMIN_EMAIL / ADMIN_PASSWORD env vars and change this before going to production.'
-  );
+
+  if (usedFallbackCredentials) {
+    console.warn(
+      `[seed] Created default admin account ${email} with a placeholder password. ` +
+        'Set ADMIN_EMAIL / ADMIN_PASSWORD env vars and change this before going to production.'
+    );
+  } else {
+    console.log(`[seed] Created admin account ${email}.`);
+  }
 }
 
 async function main() {
@@ -253,7 +260,11 @@ async function main() {
 }
 
 // Only run standalone when executed directly (not when imported by dev-server).
-if (import.meta.url === `file://${process.argv[1]?.replace(/\\/g, '/')}`) {
+// Compares via pathToFileURL instead of manual string-surgery on argv[1],
+// since a naive `file://${argv[1]}` mismatches import.meta.url's `file:///C:/...`
+// form on Windows (three slashes before the drive letter) and this guard
+// would silently never match.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   main().catch((err) => {
     console.error(err);
     process.exit(1);
