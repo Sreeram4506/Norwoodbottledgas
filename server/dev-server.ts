@@ -1,6 +1,6 @@
-import { connectDB } from './db';
-import { seedDefaultAdmin, seedPlaceholderProducts } from './seed';
-import app from './index';
+import { connectDB } from './db.js';
+import { seedDefaultAdmin, seedPlaceholderProducts } from './seed.js';
+import app from './index.js';
 
 const PORT = Number(process.env.PORT) || 4000;
 

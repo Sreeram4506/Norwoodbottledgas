@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express';
-import { AUTH_COOKIE_NAME, verifyAuthToken } from '../lib/jwt';
+import { AUTH_COOKIE_NAME, verifyAuthToken } from '../lib/jwt.js';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace -- required by Express's ambient type augmentation pattern

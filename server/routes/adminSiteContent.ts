@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { requireAdmin } from '../middleware/auth';
-import { getOrCreateSiteContent } from './siteContent';
+import { requireAdmin } from '../middleware/auth.js';
+import { getOrCreateSiteContent } from './siteContent.js';
 
 const router = Router();
 router.use(requireAdmin);

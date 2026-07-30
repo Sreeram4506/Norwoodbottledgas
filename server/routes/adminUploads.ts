@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { requireAdmin } from '../middleware/auth';
-import { saveUpload } from '../lib/uploads';
+import { requireAdmin } from '../middleware/auth.js';
+import { saveUpload } from '../lib/uploads.js';
 
 const router = Router();
 router.use(requireAdmin);

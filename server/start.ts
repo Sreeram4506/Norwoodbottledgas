@@ -1,9 +1,9 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
-import { connectDB } from './db';
-import { seedDefaultAdmin, seedPlaceholderProducts } from './seed';
-import app from './index';
+import { connectDB } from './db.js';
+import { seedDefaultAdmin, seedPlaceholderProducts } from './seed.js';
+import app from './index.js';
 
 // Production entry point for traditional Node hosts (Render, Railway, a VPS,
 // etc.) where one process serves both the API and the built frontend. Vercel

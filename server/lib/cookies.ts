@@ -1,5 +1,5 @@
 import type { Response } from 'express';
-import { AUTH_COOKIE_NAME } from './jwt';
+import { AUTH_COOKIE_NAME } from './jwt.js';
 
 const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 

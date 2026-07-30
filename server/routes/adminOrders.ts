@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { Order } from '../models/Order';
-import { requireAdmin } from '../middleware/auth';
+import { Order } from '../models/Order.js';
+import { requireAdmin } from '../middleware/auth.js';
 
 const router = Router();
 router.use(requireAdmin);
