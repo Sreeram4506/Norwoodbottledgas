@@ -18,6 +18,18 @@ async function resolveUri(): Promise<string> {
   const configured = process.env.MONGODB_URI;
   if (configured) return configured;
 
+  // Vercel (and other serverless/production hosts) can't run
+  // mongodb-memory-server: it needs to download and spawn a real mongod
+  // binary, which doesn't work on a read-only, ephemeral function
+  // filesystem. Fail fast with a clear message instead of hanging/crashing
+  // inside the memory-server bootstrap.
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    throw new Error(
+      'MONGODB_URI is not set. Add a MongoDB Atlas connection string to your Vercel project\'s ' +
+        'environment variables (Settings → Environment Variables) and redeploy.'
+    );
+  }
+
   if (cache.memoryServerUri) return cache.memoryServerUri;
 
   // Local-dev fallback so the app is fully runnable/testable without a real
