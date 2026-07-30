@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import type Stripe from 'stripe';
-import { Order } from '../models/Order.ts';
-import { Product } from '../models/Product.ts';
-import { getStripe, isStripeConfigured } from '../lib/stripe.ts';
+import { Order } from '../models/Order';
+import { Product } from '../models/Product';
+import { getStripe, isStripeConfigured } from '../lib/stripe';
 
 const router = Router();
 

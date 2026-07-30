@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { Product } from '../models/Product.ts';
-import { Order } from '../models/Order.ts';
-import { getStripe, isStripeConfigured } from '../lib/stripe.ts';
-import { getAppBaseUrl } from '../lib/appUrl.ts';
+import { Product } from '../models/Product';
+import { Order } from '../models/Order';
+import { getStripe, isStripeConfigured } from '../lib/stripe';
+import { getAppBaseUrl } from '../lib/appUrl';
 
 const router = Router();
 

@@ -1,17 +1,17 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
-import { attachUser } from './middleware/auth.ts';
-import authRoutes from './routes/auth.ts';
-import productRoutes from './routes/products.ts';
-import adminProductRoutes from './routes/adminProducts.ts';
-import adminUploadRoutes from './routes/adminUploads.ts';
-import checkoutRoutes from './routes/checkout.ts';
-import orderRoutes from './routes/orders.ts';
-import adminOrderRoutes from './routes/adminOrders.ts';
-import siteContentRoutes from './routes/siteContent.ts';
-import adminSiteContentRoutes from './routes/adminSiteContent.ts';
-import webhookRoutes from './routes/webhooks.ts';
+import { attachUser } from './middleware/auth';
+import authRoutes from './routes/auth';
+import productRoutes from './routes/products';
+import adminProductRoutes from './routes/adminProducts';
+import adminUploadRoutes from './routes/adminUploads';
+import checkoutRoutes from './routes/checkout';
+import orderRoutes from './routes/orders';
+import adminOrderRoutes from './routes/adminOrders';
+import siteContentRoutes from './routes/siteContent';
+import adminSiteContentRoutes from './routes/adminSiteContent';
+import webhookRoutes from './routes/webhooks';
 
 const app = express();
 

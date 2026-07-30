@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { User } from '../models/User.ts';
-import { signAuthToken } from '../lib/jwt.ts';
-import { setAuthCookie, clearAuthCookie } from '../lib/cookies.ts';
-import { requireAuth } from '../middleware/auth.ts';
+import { User } from '../models/User';
+import { signAuthToken } from '../lib/jwt';
+import { setAuthCookie, clearAuthCookie } from '../lib/cookies';
+import { requireAuth } from '../middleware/auth';
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-import mongoose, { Schema, type InferSchemaType } from 'mongoose';
+import mongoose, { Schema, type InferSchemaType, type Model } from 'mongoose';
 
 const siteContentSchema = new Schema(
   {
@@ -32,4 +32,5 @@ export type SiteContentDoc = InferSchemaType<typeof siteContentSchema> & {
   _id: import('mongoose').Types.ObjectId;
 };
 
-export const SiteContent = mongoose.models.SiteContent || mongoose.model('SiteContent', siteContentSchema);
+export const SiteContent: Model<SiteContentDoc> =
+  (mongoose.models.SiteContent as Model<SiteContentDoc>) || mongoose.model<SiteContentDoc>('SiteContent', siteContentSchema);

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { Order } from '../models/Order.ts';
-import { requireAdmin } from '../middleware/auth.ts';
+import { Order } from '../models/Order';
+import { requireAdmin } from '../middleware/auth';
 
 const router = Router();
 router.use(requireAdmin);
@@ -79,7 +79,9 @@ router.patch('/:id', async (req, res) => {
   if (contact !== undefined) order.contact = contact;
   if (adminNotes !== undefined) order.adminNotes = adminNotes;
   if (items !== undefined) {
-    order.items = items;
+    // Mongoose casts a plain array of objects into the DocumentArray at
+    // runtime; the cast here just satisfies the stricter subdocument type.
+    order.items = items as unknown as typeof order.items;
     order.subtotal = items.reduce((sum, i) => sum + i.price * i.qty, 0);
   }
 

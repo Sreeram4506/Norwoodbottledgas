@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { SiteContent } from '../models/SiteContent.ts';
+import { SiteContent } from '../models/SiteContent';
 
 const router = Router();
 

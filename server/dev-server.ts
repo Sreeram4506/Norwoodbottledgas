@@ -1,6 +1,6 @@
-import { connectDB } from './db.ts';
-import { seedDefaultAdmin, seedPlaceholderProducts } from './seed.ts';
-import app from './index.ts';
+import { connectDB } from './db';
+import { seedDefaultAdmin, seedPlaceholderProducts } from './seed';
+import app from './index';
 
 const PORT = Number(process.env.PORT) || 4000;
 

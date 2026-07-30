@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
-import { connectDB } from './db.ts';
-import { User } from './models/User.ts';
-import { Product } from './models/Product.ts';
+import { connectDB } from './db';
+import { User } from './models/User';
+import { Product } from './models/Product';
 
 // Real MHP Grills product-family data (names, models, specs) gathered from
 // mhpgrills.com — factual specs only, no copied marketing copy or MHP
