@@ -9,8 +9,15 @@ export class ApiError extends Error {
   }
 }
 
+// Set VITE_API_BASE_URL when the frontend and backend are deployed on
+// different origins (e.g. this app on Vercel calling a backend on Render).
+// Left unset, /api resolves relative to whatever origin served the page —
+// the right default when one server serves both (Render, local dev via
+// Vite's proxy).
+const API_BASE = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/+$/, '');
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_BASE}/api${path}`, {
     credentials: 'include',
     headers: init?.body ? { 'Content-Type': 'application/json' } : undefined,
     ...init,
@@ -38,7 +45,7 @@ async function upload<T>(path: string, file: File): Promise<T> {
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_BASE}/api${path}`, {
     method: 'POST',
     credentials: 'include',
     body: formData,
