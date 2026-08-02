@@ -33,7 +33,7 @@ const services = [
       'Keep your barbecue grills in top condition with our help. With over 10 years of experience, our technicians service roughly 400 grills a year with a thorough 10-point check, right at your location. We carry a large inventory of exact-fit replacement parts and service all major brands — including Weber, MHP, ProFire, Charbroil, Broil King, Vermont Castings, Viking, and many more. We\'re also a proud authorized dealer of grills, accessories, and replacement parts from the Modern Home Products® (MHP) line — see our Grill Sales page.',
   },
   {
-    image: '/images/image-bottles-variety.jpg',
+    image: '/images/cylinders.jfif',
     title: 'Propane Tank Disposal',
     description:
       'Have an old or expired tank? Drop it off or schedule a pickup — we recycle propane cylinders responsibly.',
