@@ -5,7 +5,6 @@ import DiscountScroller from '@/sections/DiscountScroller';
 import TrustBar from '@/sections/TrustBar';
 import Services from '@/sections/Services';
 import BottleGuide from '@/sections/BottleGuide';
-import GrillSalesTeaser from '@/sections/GrillSalesTeaser';
 import HowItWorks from '@/sections/HowItWorks';
 import CoverageArea from '@/sections/CoverageArea';
 import Testimonials from '@/sections/Testimonials';
@@ -23,7 +22,6 @@ export default function HomePage() {
         <TrustBar />
         <Services />
         <BottleGuide />
-        <GrillSalesTeaser />
         <HowItWorks />
         <CoverageArea />
         <Testimonials />
