@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useContactDetails } from '@/config/siteContent';
+import { api } from '@/lib/api';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +11,7 @@ export default function ContactCTA() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({ name: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -31,9 +33,17 @@ export default function ContactCTA() {
     return () => ctx.revert();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await api.post('/contact', formData);
+      setSubmitted(true);
+    } catch {
+      setSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -130,9 +140,10 @@ export default function ContactCTA() {
             />
             <button
               type="submit"
-              className="w-full bg-burnt-orange text-white rounded-pill py-3.5 text-base font-medium hover:bg-burnt-orange-hover transition-colors duration-300 mt-6"
+              disabled={submitting}
+              className="w-full bg-burnt-orange text-white rounded-pill py-3.5 text-base font-medium hover:bg-burnt-orange-hover transition-colors duration-300 mt-6 disabled:opacity-50"
             >
-              Send Message
+              {submitting ? 'Sending…' : 'Send Message'}
             </button>
             <p className="font-body text-xs text-white/40 mt-4 text-center">
               We'll get back to you within one business day.

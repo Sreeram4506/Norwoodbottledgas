@@ -13,14 +13,11 @@ import adminOrderRoutes from './routes/adminOrders.js';
 import siteContentRoutes from './routes/siteContent.js';
 import adminSiteContentRoutes from './routes/adminSiteContent.js';
 import webhookRoutes from './routes/webhooks.js';
+import contactSubmissionRoutes from './routes/contactSubmissions.js';
+import adminSubmissionRoutes from './routes/adminSubmissions.js';
 
 const app = express();
 
-// Allows the frontend to be hosted on a different origin than this API (e.g.
-// a Vercel-hosted frontend calling a Render-hosted backend). Same-origin
-// deployments (Render serving both, or local dev via Vite's proxy) don't
-// send an Origin header that needs checking here at all. CORS + credentials
-// requires echoing back a specific origin, never "*".
 const EXTRA_CORS_ORIGINS = (process.env.CORS_ORIGIN ?? '').split(',').map((o) => o.trim()).filter(Boolean);
 
 function isAllowedOrigin(origin: string): boolean {
@@ -50,8 +47,6 @@ app.use(
   })
 );
 
-// Stripe webhook needs the raw request body for signature verification, so
-// it must be registered before the global express.json() body parser.
 app.use('/api/webhooks', express.raw({ type: 'application/json' }), webhookRoutes);
 
 app.use(express.json());
@@ -68,6 +63,8 @@ app.use('/api/checkout', checkoutRoutes);
 app.use('/api/admin/orders', adminOrderRoutes);
 app.use('/api/site-content', siteContentRoutes);
 app.use('/api/admin/site-content', adminSiteContentRoutes);
+app.use('/api/contact', contactSubmissionRoutes);
+app.use('/api/admin/submissions', adminSubmissionRoutes);
 app.use('/api', orderRoutes);
 
 app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {

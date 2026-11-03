@@ -18,9 +18,6 @@ import RequireAuth from '@/components/RequireAuth';
 import RequireAdmin from '@/components/RequireAdmin';
 import AdminLayout from '@/pages/admin/AdminLayout';
 import AdminDashboardPage from '@/pages/admin/AdminDashboardPage';
-import AdminInventoryPage from '@/pages/admin/AdminInventoryPage';
-import AdminOrdersPage from '@/pages/admin/AdminOrdersPage';
-import AdminSiteContentPage from '@/pages/admin/AdminSiteContentPage';
 
 export default function App() {
   useEffect(() => {
@@ -66,9 +63,6 @@ export default function App() {
               }
             >
               <Route index element={<AdminDashboardPage />} />
-              <Route path="inventory" element={<AdminInventoryPage />} />
-              <Route path="orders" element={<AdminOrdersPage />} />
-              <Route path="site-content" element={<AdminSiteContentPage />} />
             </Route>
           </Routes>
         </CartProvider>

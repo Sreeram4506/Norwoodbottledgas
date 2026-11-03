@@ -1,12 +1,5 @@
-import { NavLink, Outlet, useNavigate } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 import { useAuth } from '@/context/AuthContext';
-
-const links = [
-  { to: '/admin', label: 'Dashboard', end: true },
-  { to: '/admin/inventory', label: 'Inventory' },
-  { to: '/admin/orders', label: 'Orders' },
-  { to: '/admin/site-content', label: 'Site Content' },
-];
 
 export default function AdminLayout() {
   const { user, logout } = useAuth();
@@ -17,7 +10,7 @@ export default function AdminLayout() {
       <div className="border-b border-white/10">
         <div className="max-w-[1200px] mx-auto px-5 md:px-12 py-5 flex items-center justify-between">
           <div>
-            <p className="font-display text-2xl">Admin</p>
+            <p className="font-display text-2xl">Admin Dashboard</p>
             <p className="font-body text-xs text-white/50">{user?.email}</p>
           </div>
           <div className="flex items-center gap-4">
@@ -36,22 +29,6 @@ export default function AdminLayout() {
             </button>
           </div>
         </div>
-        <nav className="max-w-[1200px] mx-auto px-5 md:px-12 flex gap-6 -mb-px">
-          {links.map((l) => (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              end={l.end}
-              className={({ isActive }) =>
-                `font-body text-sm py-3 border-b-2 transition-colors ${
-                  isActive ? 'border-burnt-orange text-white' : 'border-transparent text-white/50 hover:text-white'
-                }`
-              }
-            >
-              {l.label}
-            </NavLink>
-          ))}
-        </nav>
       </div>
 
       <div className="max-w-[1200px] mx-auto px-5 md:px-12 py-10">
