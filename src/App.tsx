@@ -4,8 +4,6 @@ import { AuthProvider } from '@/context/AuthContext';
 import { CartProvider } from '@/context/CartContext';
 import { syncSiteContentFromServer } from '@/config/siteContentSync';
 import HomePage from '@/pages/HomePage';
-import GrillsPage from '@/pages/GrillsPage';
-import GrillDetailPage from '@/pages/GrillDetailPage';
 import CartPage from '@/pages/CartPage';
 import CheckoutPage from '@/pages/CheckoutPage';
 import CheckoutSuccessPage from '@/pages/CheckoutSuccessPage';
@@ -30,8 +28,6 @@ export default function App() {
         <CartProvider>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/grills" element={<GrillsPage />} />
-            <Route path="/grills/:slug" element={<GrillDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/checkout/success" element={<CheckoutSuccessPage />} />

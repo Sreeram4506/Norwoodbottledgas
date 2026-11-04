@@ -72,12 +72,6 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
-            <Link
-              to="/grills"
-              className="text-[13px] text-warm-gray hover:text-warm-charcoal transition-colors duration-200"
-            >
-              Grill Sales
-            </Link>
           </div>
 
           <div className="flex items-center gap-3 md:gap-4">
@@ -151,13 +145,6 @@ export default function Navigation() {
                 {link.label}
               </a>
             ))}
-            <Link
-              to="/grills"
-              onClick={() => setMobileOpen(false)}
-              className="font-display text-3xl text-warm-charcoal hover:text-burnt-orange transition-colors duration-200"
-            >
-              Grill Sales
-            </Link>
             <a
               href={contact.phoneHref}
               className="mt-4 flex items-center gap-2 bg-burnt-orange text-white rounded-pill px-8 py-3.5 text-base font-medium"
